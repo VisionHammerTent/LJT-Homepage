@@ -1,0 +1,79 @@
+name: Cleanup template demo content
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup-and-build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Remove unused Academic Pages demo content and self
+        run: |
+          set -euo pipefail
+
+          git rm -r --ignore-unmatch \
+            _talks \
+            _teaching \
+            _portfolio \
+            _posts \
+            _drafts \
+            files \
+            markdown_generator \
+            talkmap \
+            talkmap.ipynb \
+            talkmap.py \
+            talkmap_out.ipynb \
+            _pages/archive-layout-with-content.md \
+            _pages/markdown.md \
+            _pages/non-menu-page.md \
+            _pages/portfolio.html \
+            _pages/talkmap.html \
+            _pages/talks.html \
+            _pages/teaching.html \
+            _pages/year-archive.html \
+            _pages/terms.md \
+            AGENTS.md
+
+          # This one-shot workflow should not remain in the personalized site.
+          git rm -f .github/workflows/cleanup-template-content.yml
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Remove unused Academic Pages demo content"
+          git push origin HEAD:refs/heads/master
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1.328.0
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+          cache-version: cleanup-validation
+
+      - name: Build minimized JavaScript
+        run: |
+          npm install -g uglify-js
+          uglifyjs assets/js/plugins/jquery.greedy-navigation.js assets/js/_main.js assets/js/theme.js -c -m -o assets/js/main.min.js
+
+      - name: Validate Jekyll build with project base path
+        run: bundle exec jekyll build --baseurl "/LJT-Homepage" --verbose
+
+      - name: Upload built site for inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ljt-homepage-site
+          path: _site
+          if-no-files-found: ignore
