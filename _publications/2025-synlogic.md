@@ -3,7 +3,6 @@ title: 'SynLogic: Synthesizing Verifiable Reasoning Data at Scale for Learning L
 collection: publications
 category: preprints
 order: 1
-date: '2025'
 year: 2025
 venue: 'arXiv'
 role: 'First author'

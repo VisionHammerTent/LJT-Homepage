@@ -3,7 +3,6 @@ title: 'Composing Parameter-Efficient Modules with Arithmetic Operations'
 collection: publications
 category: conferences
 order: 6
-date: '2023'
 year: 2023
 venue: 'NeurIPS 2023'
 role: 'Co-author'

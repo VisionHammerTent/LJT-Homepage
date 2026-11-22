@@ -3,7 +3,6 @@ title: 'On the Universal Truthfulness Hyperplane Inside LLMs'
 collection: publications
 category: conferences
 order: 3
-date: '2024'
 year: 2024
 venue: 'EMNLP 2024'
 role: 'First author'
