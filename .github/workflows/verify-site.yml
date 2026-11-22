@@ -1,0 +1,115 @@
+name: Verify personalized site
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1.328.0
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+          cache-version: verify-site
+
+      - name: Build JavaScript bundle
+        run: |
+          npm install -g uglify-js
+          uglifyjs assets/js/plugins/jquery.greedy-navigation.js assets/js/_main.js assets/js/theme.js -c -m -o assets/js/main.min.js
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build --baseurl "/LJT-Homepage"
+
+      - name: Verify required content in generated HTML
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f _site/index.html
+          test -f _site/publications/index.html
+          test -f _site/cv/index.html
+
+          required_index_terms=(
+            "Junteng Liu"
+            "jliugi@connect.ust.hk"
+            "Vicent0205"
+            "tbK9jl4AAAAJ"
+            "junteng88716710"
+            "Hong Kong University of Science and Technology"
+            "Shanghai Jiao Tong University"
+            "MINIMAX"
+            "Tencent WXG"
+            "Shanghai AI Lab"
+            "Zhiyuan Honor Scholarship"
+            "LLM reasoning"
+            "Reinforcement learning"
+            "Vision-Language Models"
+            "Interpretability"
+            "SynLogic"
+            "Perception Bottleneck of VLMs"
+            "Universal Truthfulness Hyperplane"
+            "In-Context Sharpness as Alerts"
+            "C-Eval"
+            "Composing Parameter-Efficient Modules"
+          )
+
+          for term in "${required_index_terms[@]}"; do
+            grep -Fq "$term" _site/index.html || {
+              echo "Missing required About/index text: $term"
+              exit 1
+            }
+          done
+
+          required_publications_terms=(
+            "SynLogic"
+            "Perception Bottleneck of VLMs"
+            "Universal Truthfulness Hyperplane"
+            "In-Context Sharpness as Alerts"
+            "C-Eval: A Multi-Level"
+            "Composing Parameter-Efficient Modules"
+            "Junteng Liu, Yuanxiang Fan"
+            "Jinghan Zhang, Shiqi Chen, Junteng Liu"
+            "EMNLP 2024"
+            "ICML 2024"
+            "NeurIPS 2023"
+            "Vision4Chart"
+            "Universal_Truthfulness_Hyperplane"
+          )
+
+          for term in "${required_publications_terms[@]}"; do
+            grep -Fq "$term" _site/publications/index.html || {
+              echo "Missing required Publications page text: $term"
+              exit 1
+            }
+          done
+
+          if grep -RIl "Paper Title Number\|Your Name / Site Title\|GitHub University" _site >/tmp/template-matches.txt; then
+            echo "Template placeholder content remains in generated site:"
+            cat /tmp/template-matches.txt
+            exit 1
+          fi
+
+          echo "Publication output files:"
+          find _site/publications -maxdepth 2 -type f | sort
+          echo "All content checks passed."
+
+      - name: Upload generated site
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-ljt-homepage-site
+          path: _site
+          if-no-files-found: ignore
