@@ -8,7 +8,7 @@ layout: default
   {% include page__hero.html %}
 {% endif %}
 
-{% if page.url != "/" and site.breadcrumbs %}
+{% if page.url != '/' and site.breadcrumbs %}
   {% unless paginator %}
     {% include breadcrumbs.html %}
   {% endunless %}
@@ -26,23 +26,23 @@ layout: default
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header>
-          {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+          {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: '<p>' | remove: '</p>' }}</h1>{% endif %}
           {% if page.read_time %}
             <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
           {% endif %}
-        {% if page.modified %}
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.modified | date: \"%Y-%m-%d\" }}">{{ page.modified | date: "%B %d, %Y" }}</time></p>
-        {% endif %}
-        
-        {% if page.collection == 'publications' %}
-          <p>Published in <i>{{ page.venue }}</i>{% if page.year %}, {{ page.year }}{% endif %}{% if page.role %} · {{ page.role }}{% endif %}</p>
-        {% elsif page.collection == 'teaching' %}
-          <p> {{ page.type }}, <i>{{ page.venue }}</i>, {{ page.year | default: page.date | date: "%Y" }} </p>
-        {% elsif page.venue and page.date %}
-          <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif page.date %}
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
-        {% endif %}    
+          {% if page.modified %}
+            <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: 'Published:' }}</strong> <time datetime="{{ page.modified | date: '%Y-%m-%d' }}">{{ page.modified | date: '%B %d, %Y' }}</time></p>
+          {% endif %}
+
+          {% if page.collection == 'publications' %}
+            <p>Published in <i>{{ page.venue }}</i>{% if page.year %}, {{ page.year }}{% endif %}{% if page.role %} · {{ page.role }}{% endif %}</p>
+          {% elsif page.collection == 'teaching' %}
+            <p>{{ page.type }}, <i>{{ page.venue }}</i>, {{ page.year | default: page.date | date: '%Y' }}</p>
+          {% elsif page.venue and page.date %}
+            <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: '1900-01-01' | date: '%Y' }}</p>
+          {% elsif page.date %}
+            <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: 'Published:' }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: '1900-01-01' | date: '%B %d, %Y' }}</time></p>
+          {% endif %}
         </header>
       {% endunless %}
 
@@ -54,9 +54,9 @@ layout: default
             paperurl=page.paperurl
             slidesurl=page.slidesurl
             bibtexurl=page.bibtexurl
-        %}         
+        %}
 
-        {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
+        {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: 'Direct Link' }}</a></div>{% endif %}
       </section>
 
       <footer class="page__meta">
@@ -82,7 +82,7 @@ layout: default
       <h2 class="page__related-title">You May Also Enjoy</h2>
       <div class="grid__wrapper">
         {% for post in site.related_posts limit:4 %}
-          {% include archive-single.html type="grid" %}
+          {% include archive-single.html type='grid' %}
         {% endfor %}
       </div>
     </div>
