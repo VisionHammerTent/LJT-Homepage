@@ -10,16 +10,9 @@ redirect_from:
 
 {% include base_path %}
 
-I am Junteng Liu, a first-year PhD candidate at the [HKUST NLP Group](https://hkust.edu.hk/) at the Hong Kong University of Science and Technology, where I am supervised by Professor [Junxian He](https://github.com/)<!-- The supervisor's profile URL was not provided in memory, so no external profile link is added. -->. I graduated from Shanghai Jiao Tong University (SJTU) in June 2024 with a B.Eng.
+I am Junteng Liu, a first-year PhD candidate at the HKUST NLP Group at the Hong Kong University of Science and Technology, where I am supervised by Professor Junxian He. I graduated from Shanghai Jiao Tong University (SJTU) in June 2024 with a B.Eng.
 
 My research focuses on natural language processing and machine learning. My research interests include LLM reasoning and reinforcement learning, hallucination in vision-language models (VLMs), and LLM truthfulness and interpretability. I am currently a Research Intern at MINIMAX (February 2025–Present).
-
-## Contact
-
-- **Email:** [jliugi@connect.ust.hk](mailto:jliugi@connect.ust.hk)
-- **GitHub:** [Vicent0205](https://github.com/Vicent0205)
-- **Google Scholar:** [Junteng Liu's profile](https://scholar.google.com/citations?hl=en&user=tbK9jl4AAAAJ&view_op=list_works&sortby=pubdate)
-- **X (Twitter):** [@junteng88716710](https://x.com/junteng88716710)
 
 ## Academic Background
 
@@ -42,7 +35,7 @@ My research focuses on natural language processing and machine learning. My rese
 - **Research Intern, Shanghai AI Lab** — June 2023–December 2023
   - Advisor: Professor Yu Cheng
 
-My research experience is in natural language processing and machine learning, with the specific topics recorded in the [Skills & Research Expertise](#skills--research-expertise) and [Publications](#publications) sections.
+The research topics and methods recorded for these experiences are listed in [Skills & Research Expertise](#skills--research-expertise) and represented in the [Publications](#publications) section.
 
 ## Skills & Research Expertise
 
@@ -56,7 +49,7 @@ My research experience is in natural language processing and machine learning, w
 
 ## Publications
 
-All six publications recorded in my profile are listed here. A collection view is also available on the [Publications page]({{ '/publications/' | relative_url }}).
+The six publications recorded in the available profile memory are listed below. They are also available through the template's [Publications page]({{ '/publications/' | relative_url }}).
 
 1. **[SynLogic: Synthesizing Verifiable Reasoning Data at Scale for Learning Logical Reasoning and Beyond]({{ '/publications/synlogic/' | relative_url }})** (2025, arXiv) — *First author*
    - Junteng Liu, Yuanxiang Fan, Zhuo Jiang, Han Ding, Yongyi Hu, Chi Zhang, Yiqi Shi, Shitong Weng, Aili Chen, Shiqi Chen, Yunan Huang, Mozhi Zhang, Pengyu Zhao, Junjie Yan, Junxian He.
@@ -79,10 +72,11 @@ All six publications recorded in my profile are listed here. A collection view i
 6. **[Composing Parameter-Efficient Modules with Arithmetic Operations]({{ '/publications/parameter-efficient-arithmetic/' | relative_url }})** (NeurIPS 2023) — *Co-author*
    - Jinghan Zhang, Shiqi Chen, Junteng Liu, Junxian He.
 
-Additional publication details are available on [Google Scholar](https://scholar.google.com/citations?hl=en&user=tbK9jl4AAAAJ&view_op=list_works&sortby=pubdate).
+Additional publication information is available on [Google Scholar](https://scholar.google.com/citations?hl=en&user=tbK9jl4AAAAJ&view_op=list_works&sortby=pubdate).
 
-## Contact Information
+## Contact
 
-For research-related inquiries, please email [jliugi@connect.ust.hk](mailto:jliugi@connect.ust.hk), connect on [GitHub](https://github.com/Vicent0205) or [X](https://x.com/junteng88716710), or visit my [Google Scholar profile](https://scholar.google.com/citations?hl=en&user=tbK9jl4AAAAJ&view_op=list_works&sortby=pubdate).
-
-<a id="contact"></a>
+- **Email:** [jliugi@connect.ust.hk](mailto:jliugi@connect.ust.hk)
+- **GitHub:** [Vicent0205](https://github.com/Vicent0205)
+- **Google Scholar:** [Junteng Liu's publication profile](https://scholar.google.com/citations?hl=en&user=tbK9jl4AAAAJ&view_op=list_works&sortby=pubdate)
+- **X (Twitter):** [@junteng88716710](https://x.com/junteng88716710)
